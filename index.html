@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f5f7">
+
+    <link rel="apple-touch-icon" href="./icon.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Entregas</title>
+</head>
+
+<body>
+
+<div class="app">
+
+    <header>
+        <div>
+            <p class="subtitle">A tua agenda académica</p>
+            <h1>Entregas<span>.</span></h1>
+        </div>
+
+        <button id="addButton" class="add-button" aria-label="Adicionar avaliação">
+            +
+        </button>
+    </header>
+
+    <!-- DASHBOARD -->
+
+    <section class="dashboard">
+
+        <div id="nextDeadline" class="next-card">
+            <!-- Próxima avaliação -->
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <span class="stat-icon blue">◷</span>
+                <div class="stat-number" id="pendingCount">0</div>
+                <div class="stat-label">Por realizar</div>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-icon green">✓</span>
+                <div class="stat-number" id="completedCount">0</div>
+                <div class="stat-label">Concluídas</div>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-icon red">!</span>
+                <div class="stat-number" id="urgentCount">0</div>
+                <div class="stat-label">Urgentes</div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- LISTA DE AVALIAÇÕES -->
+
+    <section class="list-section">
+
+        <div class="section-header">
+            <div>
+                <p class="eyebrow">ORGANIZAÇÃO</p>
+                <h2>As tuas avaliações</h2>
+            </div>
+
+            <button id="exportButton" class="icon-button" title="Exportar dados">
+                ↓
+            </button>
+        </div>
+
+        <div class="search-box">
+            <span>⌕</span>
+            <input id="searchInput" type="search"
+                   placeholder="Pesquisar avaliação...">
+        </div>
+
+        <div class="filters">
+            <button class="filter active" data-filter="pending">
+                Pendentes
+            </button>
+
+            <button class="filter" data-filter="completed">
+                Concluídas
+            </button>
+
+            <button class="filter" data-filter="all">
+                Todas
+            </button>
+        </div>
+
+        <div id="deadlineList"></div>
+
+    </section>
+
+    <!-- BACKUP -->
+
+    <section class="backup-section">
+        <button id="importButton" class="backup-button">
+            ↑ Importar cópia de segurança
+        </button>
+
+        <input type="file" id="importInput"
+               accept=".json,application/json" hidden>
+    </section>
+
+    <footer>
+        Entregas · A tua vida académica organizada.
+    </footer>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div id="modal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <div>
+                <p class="eyebrow">NOVA AVALIAÇÃO</p>
+                <h2 id="modalTitle">Adicionar avaliação</h2>
+            </div>
+
+            <button id="closeModal" class="close-button">×</button>
+        </div>
+
+        <label>
+            Nome da avaliação
+            <input id="nameInput" type="text"
+                   placeholder="Ex: SRSA avaliação 1"
+                   maxlength="100">
+        </label>
+
+        <div class="input-row">
+
+            <label>
+                Data
+                <input id="dateInput" type="date">
+            </label>
+
+            <label>
+                Hora
+                <input id="timeInput" type="time" value="23:59">
+            </label>
+
+        </div>
+
+        <label>
+            Prioridade
+            <select id="priorityInput">
+                <option value="low">Baixa</option>
+                <option value="medium" selected>Média</option>
+                <option value="high">Alta</option>
+            </select>
+        </label>
+
+        <label>
+            Notas (opcional)
+            <textarea id="notesInput"
+                      rows="3"
+                      placeholder="Matéria, capítulos, apontamentos..."></textarea>
+        </label>
+
+        <button id="saveButton" class="save-button">
+            Guardar avaliação
+        </button>
+
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
